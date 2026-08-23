@@ -9,6 +9,91 @@ class Inventory {
 
     private Map<String, Product> products = new HashMap<>();
 
+    public double getTotalStockValue() {
+        if (products.isEmpty()) {
+            System.out.println("Empty products in inventory");
+            return 0.0;
+        }
+
+        double totalValue = 0.0;
+
+        for (Product product : products.values()) {
+            totalValue += product.getPrice() * product.getQuantity();
+        }
+
+        return totalValue;
+    }
+
+    public void addQuantity(String productId, int quantity) {
+
+        if (products.containsKey(productId)) {
+            Product product = products.get(productId);
+            if (quantity < 0) {
+                System.out.println("Quantity cannot be negative.");
+                return;
+            }
+            int newQuantity = product.getQuantity() + quantity;
+            product.setQuantity(newQuantity);
+            System.out.println("Quantity added successfully. New quantity: " + newQuantity);
+        } else {
+            System.out.println("Product with ID " + productId + " not found.");
+        }
+
+    }
+
+    public void removeQuantity(String productId, int quantity) {
+
+        if (products.containsKey(productId)) {
+            Product product = products.get(productId);
+            if (quantity < 0) {
+                System.out.println("Quantity cannot be negative.");
+                return;
+            }
+            int newQuantity = product.getQuantity() - quantity;
+            if (newQuantity < 0) {
+                System.out.println("Insufficient quantity. Current quantity: " + product.getQuantity());
+                return;
+            }
+            product.setQuantity(newQuantity);
+            System.out.println("Quantity removed successfully. New quantity: " + newQuantity);
+        } else {
+            System.out.println("Product with ID " + productId + " not found.");
+
+        }
+
+    }
+
+    public void displayLowStockProducts(int threshold) {
+
+        if (threshold <= 0) {
+            System.out.println("Threshold must be greater than 0.");
+            return;
+        }
+
+        boolean found = false;
+
+        for (Product product : products.values()) {
+
+            if (product.getQuantity() < threshold) {
+                System.out.println("Low Stock: " + product);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No low-stock products found.");
+        }
+    }
+
+    public int getStock(String productId) {
+
+        Product product = products.get(productId);
+        if (product != null) {
+            return product.getQuantity();
+        }
+        return 0;
+    }
+
     public void getProductCount() {
         System.out.println("Total number of products in the inventory: " + products.size());
     }
@@ -128,8 +213,7 @@ class Inventory {
 
     public void cheapProduct() {
 
-        if(products.isEmpty())
-        {
+        if (products.isEmpty()) {
             System.out.println("No products available in the inventory.");
             return;
         }
