@@ -9,6 +9,11 @@ class Product implements Comparable<Product> {
         this.productName = productName;
         this.price = price;
     }
+    // @Override
+    // public int compareTo(Product other) {
+    //     return Double.compare(this.price, other.price);
+    // }
+
     @Override
     public int compareTo(Product other) {
         return Double.compare(this.price, other.price);
