@@ -35,5 +35,8 @@ public class Main {
 
         inventory.sortByProductName();
 
+        inventory.getProductCount();
+
+        inventory.calculateInventoryValue();
     }
 }

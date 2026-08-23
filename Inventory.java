@@ -8,6 +8,21 @@ class Inventory {
 
     private Map<String, Product> products = new HashMap<>();
 
+    public void getProductCount() {
+        System.out.println("Total number of products in the inventory: " + products.size());
+    }
+
+    public void calculateInventoryValue() {
+        int inventoryValue = 0;
+        for(Product product : products.values()) {
+            inventoryValue += product.getPrice();
+        }
+
+        System.out.println("Total inventory value: ₹" + inventoryValue);
+    }
+
+
+
 
     public void sortByPriceAscending() {
         List<Product> productList = new ArrayList<>(products.values());
