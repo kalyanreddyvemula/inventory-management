@@ -12,10 +12,10 @@ class Inventory {
     public double getTotalStockValue() {
         if (products.isEmpty()) {
             System.out.println("Empty products in inventory");
-            return 0.0;
+            return 0;
         }
 
-        double totalValue = 0.0;
+        double totalValue = 0;
 
         for (Product product : products.values()) {
             totalValue += product.getPrice() * product.getQuantity();
@@ -220,5 +220,39 @@ class Inventory {
 
         Product cheapProduct = Collections.min(products.values(), (p1, p2) -> Double.compare(p1.getPrice(), p2.getPrice()));
         System.out.println("Cheapest product: " + cheapProduct);
+    }
+
+    public void findProductsByCategory(String category) {
+        if (category == null || category.trim().isEmpty()) {
+            System.out.println("Category cannot be empty.");
+            return;
+        }
+
+        boolean found = false;
+
+        for (Product product : products.values()) {
+            if (category.equalsIgnoreCase(product.getCategory())) {
+                System.out.println("Product in category " + category + ": " + product);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No products found in category: " + category);
+        }
+    }
+
+    public int getProductCountByCategory(String category) {
+
+        int count = 0;
+
+        for (Product product : products.values()) {
+
+            if (product.getCategory().equalsIgnoreCase(category)) {
+                count++;
+            }
+        }
+
+        return count;
     }
 }
