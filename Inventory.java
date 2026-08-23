@@ -1,7 +1,8 @@
+
 import java.util.HashMap;
 import java.util.Map;
 
-class Inventory{
+class Inventory {
 
     private Map<String, Product> products = new HashMap<>();
 
@@ -15,17 +16,16 @@ class Inventory{
     }
 
     public void findProductById(String productId) {
-        if(products.containsKey(productId)) {
-           Product product = products.get(productId);
-           System.out.println("Product found: " + product);
-        }else {
+        if (products.containsKey(productId)) {
+            Product product = products.get(productId);
+            System.out.println("Product found: " + product);
+        } else {
             System.out.println("Product with ID " + productId + " not found.");
         }
     }
 
-
     public void removeProduct(String productId) {
-        if(products.containsKey(productId)){
+        if (products.containsKey(productId)) {
             products.remove(productId);
             System.out.println("Product with Id: " + productId + " removed successfully.");
         } else {
@@ -34,14 +34,44 @@ class Inventory{
     }
 
     public void displayAllProducts() {
-        if(products.isEmpty()){
+        if (products.isEmpty()) {
             System.out.println("No products available in the Inventory.");
-        }else{
+        } else {
             System.out.println("All Products in Inventory:");
             for (Product product : products.values()) {
-    System.out.println(product);
-}
+                System.out.println(product);
+            }
         }
     }
 
+
+    public void updateProduct(String productId, String newProductName, double newPrice) {
+        if(products.containsKey(productId)){
+            Product product = products.get(productId);
+            product.setProductName(newProductName);
+            product.setPrice(newPrice);
+            System.out.println("Product with ID " + productId + " updated successfully.");
+        } else {
+            System.out.println("Product with ID " + productId + " not found.");
+
+        }
+    }
+
+    public void searchProductsByName(String name) {
+
+    boolean found = false;
+
+    for (Product product : products.values()) {
+
+        if (product.getProductName().toLowerCase().contains(name.toLowerCase())) {
+
+            System.out.println("Product Details: " + product);
+            found = true;
+        }
+    }
+
+    if (!found) {
+        System.out.println("No products found with name: " + name);
+    }
+}
 }
