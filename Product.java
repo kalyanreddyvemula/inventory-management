@@ -3,11 +3,13 @@ class Product implements Comparable<Product> {
     private String productId;
     private String productName;
     private double price;
+    private int quantity;
 
-    Product(String productId, String productName, double price) {
+    Product(String productId, String productName, double price, int quantity) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
+        this.quantity = quantity;
     }
     // @Override
     // public int compareTo(Product other) {
@@ -31,6 +33,10 @@ class Product implements Comparable<Product> {
         return price;
     }
 
+    public int getQuantity(){
+        return quantity;
+    }
+
     public void setProductId(String productId) {
         this.productId = productId;
     }
@@ -41,6 +47,10 @@ class Product implements Comparable<Product> {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override
