@@ -6,7 +6,7 @@ public class Main {
 
 
         Product laptop = new Product("P001", "Laptop", 80000);
-        Product kids = new Product("P005", "Kids Laptop", 50000);
+        Product kids = new Product("P005", "Kids Laptop", 150000000);
 
         Product laptop2 = new Product("P004", "Gaming Laptop", 1000000);
         Product laptop3 = new Product("P003", "work Laptop", 1200000);
@@ -37,6 +37,13 @@ public class Main {
 
         inventory.getProductCount();
 
+
         inventory.calculateInventoryValue();
+
+
+        inventory.expensiveProduct();
+
+        
+        inventory.cheapProduct();
     }
 }
