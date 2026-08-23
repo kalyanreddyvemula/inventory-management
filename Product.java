@@ -4,12 +4,14 @@ class Product implements Comparable<Product> {
     private String productName;
     private double price;
     private int quantity;
+    private String category;
 
-    Product(String productId, String productName, double price, int quantity) {
+    Product(String productId, String productName, double price, int quantity, String category) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
+        this.category = category;
     }
     // @Override
     // public int compareTo(Product other) {
@@ -53,11 +55,22 @@ class Product implements Comparable<Product> {
         this.quantity = quantity;
     }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+    
     @Override
     public String toString() {
         return "Product ID: " + productId
                 + ", Product Name: " + productName
-                + ", Price: ₹" + price;
+                + ", Price: ₹" + price
+                + ", Quantity: " + quantity
+                + ", Category: " + category
+                ;
     }
 
     @Override
